@@ -8,46 +8,44 @@
 #include <errno.h>
 #include <sys/wait.h>
 #include <string.h>
-
-/*SYSTEM HEADER FLES END*/
+/*SYSTEM HEADER FILES END*/
 
 /*CONSTANTS START*/
-#define BUFFER_SIZE 100
-#define DELIMITERS " \t\n"
+#define BUFSIZE 256
+#define DELIM " \t\n"
 /*CONSTANTS END*/
 
 /**
- *struct chooseBuiltin - Builtin functions in in struct
- *@nameBuiltin: Name of builtin functions
- *@functionBuiltin: Pointer to builtin functions
+ * struct choose_builtin - Builtin commands struct
+ * @nameBuiltin: Name of builtin command
+ * @func_builtin: Pointer to builtin command functions
  */
-typedef struct chooseBuiltin
+typedef struct choose_builtin
 {
 	char *nameBuiltin;
-	int (*functionBuiltin)(char **, char *, int *);
-}
+	int (*func_builtin)(char **, char *, int *);
+} choose_builtins_t;
 
-chooseBuiltins;
-
-/*Glabol variable to access the environment list*/
 extern char **environ;
 
-/*FUNCTION PROTOTYPES START*/
-int cd(char **args, char *inputStdin, int *exitStatus);
-int setenvv(char **args, char *inputStdin, int *exitStatus);
-int unsetenvv(char **args, char *inputStdin, int *exitStatus);
-int envv(char **args, char *inputStdin, int *exitStatus);
-int exitt(char **args, char *inputStdin, int *exitStatus);
-int execute(char **args, char **argv, int *exitStatus);
-int executeBuiltins(char **args,
-	char *inputStdin,
-	char **argv,
-	int *exitStatus);
+/*FUNCTION PRORTYPES START*/
+int execute(char *arguments[], char *argv[], int *exitStatus);
+int executeBuiltins(char *arguments[], char *inputStdin,
+		char *argv[], int *exitStatus);
+
+char *validateInput(char *arguments[], char *argv[] __attribute__((unused)));
+int validateSpaces(char *input);
+
 char **token(char *input);
 char **tokenPath(char *input);
-char *validateInput(char **args, char **argv);
-int validateSpaces(char *input);
+
+int cd(char *arguments[], char *inputStdin, int *exitStatus);
+int setenvv(char *arguments[],  char *inputStdin, int *exitStatus);
+int unsetenvv(char **arguments,  char *inputStdin, int *exitStatus);
+int envv(char **arguments, char *inputStdin, int *exitStatus);
+int exitt(char **arguments, char *inputStdin, int *exitStatus);
+
 char *str_concat(char *s1, char *s2);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-/*FUNCTION PROTOTYPES END*/
+/*FUNCTION PRORTYPES END*/
 #endif
