@@ -9,18 +9,18 @@
  */
 int execute(char *command)
 {
-        int status = 0;
-        pid_t pid = fork();
+	int status = 0;
+	pid_t pid = fork();
 
-        if (pid == -1)
-        {
-                perror("fork");
-                free(command);
-                exit(EXIT_FAILURE);
-        }
-        else if (pid == 0)
-        {
-                char *arr[64];
+	if (pid == -1)
+	{
+		perror("fork");
+		free(command);
+		exit(EXIT_FAILURE);
+	}
+	else if (pid == 0)
+	{
+		char *arr[64];
                 line_div(command, arr);
                 if (arr[0] == NULL)
                 {
