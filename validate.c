@@ -1,11 +1,11 @@
 #include "shell.h"
 
 /**
-* validate_input - Validates if the PATH exists
-* @args: Tokens
-* @argv: List of Arguments
-* Return: new_args
-*/
+ *validate_input - Validates if the PATH exists
+ *@args: Tokens
+ *@argv: List of Arguments
+ *Return: new_args
+ */
 char *validateInput(char **args, char **argv)
 {
 	char *new_args, *first, *slash_argument = "/";
@@ -19,7 +19,7 @@ char *validateInput(char **args, char **argv)
 		if ((access(new_args, F_OK) == -1))
 		{
 			fprintf(stderr, "%s: %d: %s: No such file or directory\n",
-			argv[0], __LINE__, args[0]);
+				argv[0], __LINE__, args[0]);
 
 			return ("Fail access");
 		}
@@ -44,23 +44,25 @@ char *validateInput(char **args, char **argv)
 				free(first);
 				return (new_args);
 			}
+
 			i++;
 		}
 
 		free(tokens_path);
 		fprintf(stderr, "%s: %d: %s: No such file or directory\n",
-		argv[0], __LINE__, args[0]);
+			argv[0], __LINE__, args[0]);
 
 		return ("Fail access");
 	}
+
 	return (new_args);
 }
 
 /**
-* validateSpaces- Checks if input is only spaces
-* @input: Input
-* Return: flag
-*/
+ *validateSpaces- Checks if input is only spaces
+ *@input: Input
+ *Return: flag
+ */
 int validateSpaces(char *input)
 {
 	int i = 0, flag = 1, len = 0;
@@ -69,7 +71,6 @@ int validateSpaces(char *input)
 
 	while (input[i] == ' ' || input[i] == '\n' || input[i] == '\t')
 		i++;
-
 
 	if (i != len)
 		flag = 0;
