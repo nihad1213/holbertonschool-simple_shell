@@ -15,6 +15,7 @@ int execute(char **args, char **argv, int *exitStatus)
 	int status;
 	char *new_args;
 	new_args = validateInput(args, argv);
+
 	(void) exitStatus;
 	if (strcmp(new_args, "Fail access") == 0)
 		return (1);
@@ -57,7 +58,7 @@ int execute(char **args, char **argv, int *exitStatus)
  *@exitStatus: Exit status
  *Return: 1 or 0
  */
-int executeBuiltins(	char **args,
+int executeBuiltins(char **args,
 	char *inputStdin,
 	char **argv,
 	int *exitStatus)
