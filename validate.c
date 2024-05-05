@@ -50,7 +50,6 @@ char *validateInput(char **args, char **argv)
 	}
 	return (new_args);
 }
-
 /**
  *validateSpaces- Checks if input is only spaces
  *@input: Input
