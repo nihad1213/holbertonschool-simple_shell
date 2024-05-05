@@ -31,12 +31,16 @@ char *validateInput(char **args, char **argv)
 			first = str_concat(slash_argument, args[0]);
 			new_args = str_concat(tokens_path[i], first);
 			if ((access(new_args, F_OK) == -1))
+			{
 				free(new_args);
 				free(first);
+			}
 			else
+			{
 				free(tokens_path);
 				free(first);
 				return (new_args);
+			}
 			i++;
 		}
 		free(tokens_path);
