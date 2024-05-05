@@ -14,17 +14,12 @@ int execute(char **args, char **argv, int *exitStatus)
 	/*It using for waitpid syscall*/
 	int status;
 	char *new_args;
-
 	new_args = validateInput(args, argv);
-
 	(void) exitStatus;
-
 	if (strcmp(new_args, "Fail access") == 0)
 		return (1);
-
 	/*Fork create new process*/
 	pid = fork();
-
 	/*0 means child process*/
 	if (pid == 0)
 	{
@@ -34,7 +29,6 @@ int execute(char **args, char **argv, int *exitStatus)
 			exit(EXIT_FAILURE);
 		}
 	}
-
 	/*<0 means error in fork*/
 	else if (pid < 0)
 	{
@@ -52,7 +46,6 @@ int execute(char **args, char **argv, int *exitStatus)
 			free(new_args);
 		return (1);
 	}
-
 	return (1);
 }
 
@@ -70,23 +63,14 @@ int executeBuiltins(	char **args,
 	int *exitStatus)
 {
 	int i = 0;
-
 	chooseBuiltins options[] = {
-		{ "exit", exitt
-		},
-		{ "env", envv
-		},
-		{ "cd", cd
-		},
-		{ "setenv", setenvv
-		},
-		{ "unsetenv", unsetenvv
-		},
-		{
-			NULL, NULL
-		}
+		{ "exit", exitt},
+		{ "env", envv},
+		{ "cd", cd},
+		{ "setenv", setenvv},
+		{ "unsetenv", unsetenvv},
+		{NULL, NULL}
 	};
-
 	while (options[i].nameBuiltin)
 	{
 		if (strcmp(options[i].nameBuiltin, args[0]) == 0)
@@ -96,7 +80,5 @@ int executeBuiltins(	char **args,
 
 		i++;
 	}
-
 	return (execute(args, argv, exitStatus));
-
 }
