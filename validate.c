@@ -8,8 +8,8 @@
  */
 char *validateInput(char **args, char **argv)
 {
-	char *new_args, *first, *slash_argument = "/";
-	char **tokens_path, holder_env[1024];
+	char *new_args, *first, *slash_argument = "/", **tokens_path, holder_env[1024];
+	/*char **tokens_path, holder_env[1024];*/
 	int i = 0;
 
 	if (args[0][0] == '/' || args[0][0] == '.')
