@@ -16,11 +16,9 @@ char *validateInput(char **args, char **argv)
 	{
 		new_args = args[0];
 		if ((access(new_args, F_OK) == -1))
-		{
 			fprintf(stderr, "%s: %d: %s: No such file or directory\n",
 					argv[0], __LINE__, args[0]);
 			return ("Fail access");
-		}
 	}
 	else
 	{
