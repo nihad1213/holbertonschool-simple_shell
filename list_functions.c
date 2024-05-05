@@ -1,4 +1,4 @@
-#include "holberton.h"
+#include "shell.h"
 /**
  * _link - built linked list with directories
  * @a: PATH
