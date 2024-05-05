@@ -1,26 +1,24 @@
 #include "shell.h"
 
 /**
- *token - Divide input into tokens
- *@input: Input
- *Return: Tokens
+ * token - Divide the input into arguments
+ * @input: Input
+ * Return: Pointer
  */
 char **token(char *input)
 {
 	char **tokens = NULL, *token = NULL;
-	int buffer = BUFFER_SIZE, newBuffer = 0, position = 0;
-	char **backup_tokens = NULL;
+	int buffer = BUFSIZE, newBuffer = 0, position = 0;
+	char **backupTokens = NULL;
 
-	/*allocate memory for the array of tokens */
 	tokens = malloc(buffer * sizeof(char *));
-
 	if (tokens == NULL)
 	{
 		fprintf(stderr, "memory allocation error\n");
 		exit(EXIT_FAILURE);
 	}
 
-	token = strtok(input, DELIMITERS);
+	token = strtok(input, DELIM);
 	while (token != NULL)
 	{
 		tokens[position] = token;
@@ -28,40 +26,35 @@ char **token(char *input)
 
 		if (position >= buffer)
 		{
-			newBuffer = BUFFER_SIZE * 2;
-			backup_tokens = tokens;
+			newBuffer = BUFSIZE * 2;
+			backupTokens = tokens;
 			tokens = _realloc(tokens, buffer, newBuffer * sizeof(char *));
-
 			if (tokens == NULL)
 			{
-				free(backup_tokens);
+				free(backupTokens);
 				free(tokens);
 				fprintf(stderr, "memory allocation error\n");
 				exit(EXIT_FAILURE);
 			}
 		}
-
-		token = strtok(NULL, DELIMITERS);
+		token = strtok(NULL, DELIM);
 	}
-
 	tokens[position] = NULL;
 	return (tokens);
 }
 
 /**
- *tokenPath - Divide Path into tokens
- *@input: Input
- *Return: Tokens
+ * tokeniPath - Split the environment variable PATH into an array of tokens
+ * @input: Pointer to environment variable PATH
+ * Return: Pointer to the array of tokens
  */
 char **tokenPath(char *input)
 {
-	int buffer = BUFFER_SIZE, newBuffer = 0, position = 0;
+	int buffer = BUFSIZE, newBuffer = 0, position = 0;
 	char **tokens = NULL, *token = NULL;
-	char **backup_tokens = NULL;
+	char **backupTokens = NULL;
 
-	/*allocate memory for the array of tokens */
 	tokens = malloc(buffer * sizeof(char *));
-
 	if (tokens == NULL)
 	{
 		fprintf(stderr, "memory allocation error\n");
@@ -69,29 +62,25 @@ char **tokenPath(char *input)
 	}
 
 	token = strtok(input, ":");
-
 	while (token != NULL)
 	{
 		tokens[position] = token;
 		position++;
-		/*reallocate the array of tokens if necessary*/
 		if (position >= buffer)
 		{
-			newBuffer = BUFFER_SIZE * 2;
-			backup_tokens = tokens;
+			newBuffer = BUFSIZE * 2;
+			backupTokens = tokens;
 			tokens = _realloc(tokens, buffer, newBuffer * sizeof(char *));
 			if (tokens == NULL)
 			{
-				free(backup_tokens);
+				free(backupTokens);
 				free(tokens);
 				fprintf(stderr, "memory allocation error\n");
 				exit(EXIT_FAILURE);
 			}
 		}
-
 		token = strtok(NULL, ":");
 	}
-
 	tokens[position] = NULL;
 	return (tokens);
 }
