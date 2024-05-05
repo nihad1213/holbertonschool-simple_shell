@@ -102,7 +102,7 @@ int unsetenvv(char **args, char *inputStdin, int *exitStatus)
 }
 
 /**
- *env - Prints enviroment variable of current process
+ *envv - Prints enviroment variable of current process
  *@args: arguments
  *@inputStdin: input of stdin
  *@exitStatus: exit status
