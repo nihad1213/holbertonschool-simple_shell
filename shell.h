@@ -24,7 +24,7 @@
 typedef struct chooseBuiltin
 {
 	char *nameBuiltin;
-	int(*functionBuiltin)(char **, char *, int *);
+	int (*functionBuiltin)(char **, char *, int *);
 }
 
 chooseBuiltins;
