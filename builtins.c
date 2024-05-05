@@ -1,37 +1,36 @@
 #include "shell.h"
 
 /**
- * cd - Change directory
+ *cd - Change directory
  *
- * @args: tokens
- * @inputStdin: Input
- * @exitStatus: Exit
- * Return: SUCCESS
+ *@args: tokens
+ *@inputStdin: Input
+ *@exitStatus: Exit
+ *Return: SUCCESS
  */
 int cd(char **args, char *inputStdin, int *exitStatus)
 {
-
-    /*Store return value of chdir() syscall*/
-    int status;
+	/*Store return value of chdir() syscall*/
+	int status;
 	char cwd[128];
 
-    /*Handle unused parameter error*/
-    (void)inputStdin;
-    (void)exitStatus;
+	/*Handle unused parameter error*/
+	(void) inputStdin;
+	(void) exitStatus;
 
 	getcwd(cwd, sizeof(cwd));
 
-    /*Home Directory*/
+	/*Home Directory*/
 	if (args[1] == NULL)
 		status = chdir(getenv("HOME"));
-    /*Get Back Directory*/
+	/*Get Back Directory*/
 	else if (strcmp(args[1], "-") == 0)
 		status = chdir(getenv("OLDPWD"));
 	/*Get Back Home Directory*/
 	else if (strcmp(args[1], "~") == 0)
 		status = chdir(getenv("HOME"));
 	/*Get Specific Path*/
-    else
+	else
 		status = chdir(args[1]);
 
 	/*Error Handling*/
@@ -45,20 +44,19 @@ int cd(char **args, char *inputStdin, int *exitStatus)
 }
 
 /**
- * setenv - Adds or changes an environment variable
- * @args: Tokens
- * @inputStdin: Input
- * @exitStatus: Exit status
- * Return: SUCCESS
+ *setenv - Adds or changes an environment variable
+ *@args: Tokens
+ *@inputStdin: Input
+ *@exitStatus: Exit status
+ *Return: SUCCESS
  */
-int setenvv(char **args,  char *inputStdin, int *exitStatus)
+int setenvv(char **args, char *inputStdin, int *exitStatus)
 {
-
 	int numberTokens = 0;
 
-    /*Error handling*/
-    (void)inputStdin;
-	(void)exitStatus;
+	/*Error handling*/
+	(void) inputStdin;
+	(void) exitStatus;
 
 	while (args[numberTokens] != NULL)
 	{
@@ -69,26 +67,26 @@ int setenvv(char **args,  char *inputStdin, int *exitStatus)
 		setenv(args[1], args[2], 1);
 
 	else
-		fprintf(stderr, "incorrect format, use: \"setenv [KEY] [VALUE]\"\n");
+		fprintf(stderr, "incorrect format, use: \"setenv[KEY][VALUE]\"\n");
 
 	return (1);
 }
 
 /**
- * unsetenv - Deletes an env var from the environment
- * @args: Tokens
- * @inputStdin: Input
- * @exitStatus: Exit status
+ *unsetenv - Deletes an env var from the environment
+ *@args: Tokens
+ *@inputStdin: Input
+ *@exitStatus: Exit status
  *
- * Return: SUCCESS
+ *Return: SUCCESS
  */
-int unsetenvv(char **args,  char *inputStdin, int *exitStatus)
+int unsetenvv(char **args, char *inputStdin, int *exitStatus)
 {
-    int numberTokens = 0;
+	int numberTokens = 0;
 
-    /*Error handling*/
-	(void)inputStdin;
-	(void)exitStatus;
+	/*Error handling*/
+	(void) inputStdin;
+	(void) exitStatus;
 
 	while (args[numberTokens] != NULL)
 	{
@@ -96,28 +94,28 @@ int unsetenvv(char **args,  char *inputStdin, int *exitStatus)
 	}
 
 	if (numberTokens == 2)
-        unsetenv(args[1]);        
+		unsetenv(args[1]);
 	else if (numberTokens != 2)
-		fprintf(stderr, "incorrect format, use: \"unsetenv [KEY]\"\n");
+		fprintf(stderr, "incorrect format, use: \"unsetenv[KEY]\"\n");
 
 	return (1);
 }
 
 /**
- * env - Prints enviroment variable of current process
- * @args: arguments
- * @inputStdin: input of stdin
- * @exitStatus: exit status
- * Return: 1
+ *env - Prints enviroment variable of current process
+ *@args: arguments
+ *@inputStdin: input of stdin
+ *@exitStatus: exit status
+ *Return: 1
  */
 int envv(char **args, char *inputStdin, int *exitStatus)
 {
 	int i = 0;
 
-    /*Error handling*/
-	(void)args;
-	(void)inputStdin;
-	(void)exitStatus;
+	/*Error handling*/
+	(void) args;
+	(void) inputStdin;
+	(void) exitStatus;
 
 	if (environ[i] == NULL)
 	{
@@ -132,20 +130,20 @@ int envv(char **args, char *inputStdin, int *exitStatus)
 }
 
 /**
- * exitt - Function exits the shell
- * @args: arguments
- * @inputStdin: input of stdin
- * @exitStatus: exit status
- * Return: 0 on failure
+ *exitt - Function exits the shell
+ *@args: arguments
+ *@inputStdin: input of stdin
+ *@exitStatus: exit status
+ *Return: 0 on failure
  */
 int exitt(char **args, char *inputStdin, int *exitStatus)
 {
-    /*Store return value of exit*/
+	/*Store return value of exit*/
 	int outputExit = 0;
 
-    /*Error handling*/
-	(void)args;
-	(void)inputStdin;
+	/*Error handling*/
+	(void) args;
+	(void) inputStdin;
 
 	if (args[1] == NULL)
 	{
@@ -159,7 +157,6 @@ int exitt(char **args, char *inputStdin, int *exitStatus)
 		fprintf(stderr, "exit: too many arguments\n");
 		return (0);
 	}
-
 
 	outputExit = atoi(args[1]);
 	free(args);
