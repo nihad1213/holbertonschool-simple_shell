@@ -69,7 +69,7 @@ char *validateInput(char **args, char **argv) /* */
 * @input: string from input
 * Return: 0 if there are spaces, tabs or line breaks
 */
-int validateSpace(char *input)
+int validateSpaces(char *input)
 {
 	int i = 0, flag = 1, len = 0;
 
