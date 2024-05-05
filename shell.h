@@ -19,7 +19,7 @@
 /**
  *struct chooseBuiltin - Builtin functions in in struct
  *@nameBuiltin: Name of builtin functions
- *@functionBuiltin: Pointer to builtin functions 
+ *@functionBuiltin: Pointer to builtin functions
  */
 typedef struct chooseBuiltin
 {
