@@ -1,5 +1,5 @@
 
-# ![images(1).png](https://github.com/nihad1213/holbertonschool-simple_shell/assets/99197650/0f887b43-4999-4060-b142-3220c9c4e5c0) S I M P L E &emsp; S H E L L
+# ![images(1)](https://github.com/nihad1213/holbertonschool-simple_shell/assets/99197650/0f887b43-4999-4060-b142-3220c9c4e5c0) S I M P L E &emsp; S H E L L
 
 ## Introduction 🚀
 
