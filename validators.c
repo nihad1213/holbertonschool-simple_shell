@@ -65,7 +65,7 @@ char *validateInput(char **args, char **argv) /* */
 }
 
 /**
-* validateSpace - Checks if input is only spaces
+* validateSpaces - Checks if input is only spaces
 * @input: string from input
 * Return: 0 if there are spaces, tabs or line breaks
 */
