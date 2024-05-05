@@ -3,7 +3,7 @@
 /**
  * execute - executes command
  *
- *@command: The command string to execute.
+ * @command: The command string to execute.
  *
  * Return: the exit status of the executed command,
  * or -1 if an error occurs.
@@ -25,10 +25,9 @@ int execute(char *command)
     }
     else
     {
-        status = execute_parent(pid);
+        status = execute_parent(pid, command);
     }
 
-    free(command);
     return status;
 }
 
@@ -44,6 +43,7 @@ void execute_child(char *command)
 
     if (arr[0] == NULL)
     {
+        free(command);
         exit(EXIT_SUCCESS);
     }
 
@@ -54,11 +54,11 @@ void execute_child(char *command)
 
     if (strchr(arr[0], '/') != NULL)
     {
-        execute_absolute_path(arr);
+        execute_absolute_path(arr, command);
     }
     else
     {
-        execute_relative_path(arr);
+        execute_relative_path(arr, command);
     }
 }
 
@@ -66,13 +66,15 @@ void execute_child(char *command)
  * execute_parent - waits for child process to finish and returns status
  *
  * @pid: The process ID of the child process.
+ * @command: The command string.
  * 
  * Return: the exit status of the child process.
  */
-int execute_parent(pid_t pid)
+int execute_parent(pid_t pid, char *command)
 {
     int status;
     waitpid(pid, &status, 0);
+    free(command);
 
     if (WIFEXITED(status))
     {
@@ -104,27 +106,34 @@ void print_environment()
  * execute_absolute_path - executes command with absolute path
  *
  * @arr: Array of strings containing command and arguments.
+ * @command: The command string.
  */
-void execute_absolute_path(char *arr[])
+void execute_absolute_path(char *arr[], char *command)
 {
     if (access(arr[0], X_OK) == 0)
     {
         if (execve(arr[0], arr, environ) == -1)
         {
             perror("execve");
+            free(command);
             exit(EXIT_FAILURE);
         }
     }
-    fprintf(stderr, "./hsh: 1: %s: not found\n", arr[0]);
-    exit(127);
+    else
+    {
+        fprintf(stderr, "./hsh: 1: %s: not found\n", arr[0]);
+        free(command);
+        exit(127);
+    }
 }
 
 /**
  * execute_relative_path - executes command with relative path
  *
  * @arr: Array of strings containing command and arguments.
+ * @command: The command string.
  */
-void execute_relative_path(char *arr[])
+void execute_relative_path(char *arr[], char *command)
 {
     char *path = getenv("PATH");
     char *token;
@@ -132,6 +141,7 @@ void execute_relative_path(char *arr[])
     if (path == NULL)
     {
         fprintf(stderr, "./hsh: 1: %s: not found\n", arr[0]);
+        free(command);
         exit(127);
     }
 
@@ -145,6 +155,7 @@ void execute_relative_path(char *arr[])
             if (execve(executable_path, arr, environ) == -1)
             {
                 perror("execve");
+                free(command);
                 exit(EXIT_FAILURE);
             }
         }
@@ -152,6 +163,7 @@ void execute_relative_path(char *arr[])
     }
 
     fprintf(stderr, "./hsh: 1: %s: not found\n", arr[0]);
+    free(command);
     exit(127);
 }
-
+ 
