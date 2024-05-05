@@ -1,6 +1,7 @@
-#ifndef _HOLBERTON_H_
-#define _HOLBERTON_H_
+#ifndef SHELL_H
+#define SHELL_H
 
+/*SYSTEM HEADER FILES START*/
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -12,8 +13,13 @@
 #include <signal.h>
 #include <stdarg.h>
 #include <limits.h>
+/*SYSTEM HEADER FILES END*/
+
+/*CONSTANTS START*/
 #ifndef BUFF_SIZE
 #define BUFF_SIZE 300
+/*CONSTANTS END*/
+
 #endif
 /**
  * struct link - node that contains the directories
