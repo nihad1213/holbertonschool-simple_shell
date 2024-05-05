@@ -28,8 +28,8 @@ char *validateInput(char **args, char **argv)
 		tokens_path = tokenPath(holder_env);
 		while (tokens_path[i])
 		{
-			first = strcat(slash_argument, args[0]);
-			new_args = strcat(tokens_path[i], first);
+			first = str_concat(slash_argument, args[0]);
+			new_args = str_concat(tokens_path[i], first);
 			if ((access(new_args, F_OK) == -1))
 			{
 				free(new_args);
