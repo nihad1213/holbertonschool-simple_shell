@@ -1,20 +1,18 @@
 #include "shell.h"
-char _getenv(const char *name)
+char *_getenv(const char *name)
 {
-	int i, j, flag;
-	char *current_env = NULL;
+	extern char** environ;
+    	int i = 0;
+    	size_t name_len = strlen(name);
 
-	for (i = 0; environ[i] != NULL; i++)
-	{
-		flag = 0;
-		current_env = environ[i];
-		for (j = 0; current_env[j] != '='; j++)
+   	 while (environ[i] != NULL) 
+    	{
+        	if (strncmp(environ[i], name, name_len) == 0 && environ[i][name_len] == '=') 
 		{
-			if (name[j] != current_env[j])
-				flag = 1;
-		}
-		if (flag == 0)
-			return (environ[i]);
-	}
-	return (NULL);
+            		return environ[i] + name_len + 1;
+        	}
+        	i++;
+    	}
+
+    	return NULL;
 }
