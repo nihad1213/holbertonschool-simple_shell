@@ -14,7 +14,7 @@ int execute(char **args, char **argv, int *exitStatus)
 	/*It using for waitpid syscall*/
 	int status;
 	char *new_args;
-	
+
 	new_args = validateInput(args, argv);
 	(void) exitStatus;
 	if (strcmp(new_args, "Fail access") == 0)
