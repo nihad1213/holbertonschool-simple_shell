@@ -30,7 +30,7 @@ char **token(char *input)
 		{
 			newBuffer = BUFFER_SIZE * 2;
 			backup_tokens = tokens;
-			tokens = realloc(tokens, newBuffer * sizeof(char *));
+			tokens = _realloc(tokens, newBuffer * sizeof(char *));
 
 			if (tokens == NULL)
 			{
@@ -79,7 +79,7 @@ char **tokenPath(char *input)
 		{
 			newBuffer = BUFFER_SIZE * 2;
 			backup_tokens = tokens;
-			tokens = realloc(tokens, newBuffer * sizeof(char *));
+			tokens = _realloc(tokens, newBuffer * sizeof(char *));
 			if (tokens == NULL)
 			{
 				free(backup_tokens);
