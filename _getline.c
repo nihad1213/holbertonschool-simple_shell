@@ -8,7 +8,7 @@ char *_getline(void)
 	char *command = NULL;
 	size_t len = 0;
 	int read;
-	
+
 	read = getline(&command, &len, stdin);
 	if (read == -1)
 	{
