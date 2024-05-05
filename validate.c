@@ -11,23 +11,19 @@ char *validateInput(char **args, char **argv)
 	char *new_args, *first, *slash_argument = "/";
 	char **tokens_path, holder_env[1024];
 	int i = 0;
-
 	if (args[0][0] == '/' || args[0][0] == '.')
 	{
 		new_args = args[0];
-
 		if ((access(new_args, F_OK) == -1))
 		{
 			fprintf(stderr, "%s: %d: %s: No such file or directory\n",
 				argv[0], __LINE__, args[0]);
-
 			return ("Fail access");
 		}
 	}
 	else
 	{
 		strcpy(holder_env, getenv("PATH"));
-
 		tokens_path = tokenPath(holder_env);
 		while (tokens_path[i])
 		{
@@ -44,17 +40,14 @@ char *validateInput(char **args, char **argv)
 				free(first);
 				return (new_args);
 			}
-
 			i++;
 		}
 
 		free(tokens_path);
 		fprintf(stderr, "%s: %d: %s: No such file or directory\n",
 			argv[0], __LINE__, args[0]);
-
 		return ("Fail access");
 	}
-
 	return (new_args);
 }
 
@@ -66,14 +59,10 @@ char *validateInput(char **args, char **argv)
 int validateSpaces(char *input)
 {
 	int i = 0, flag = 1, len = 0;
-
 	len = strlen(input);
-
 	while (input[i] == ' ' || input[i] == '\n' || input[i] == '\t')
 		i++;
-
 	if (i != len)
 		flag = 0;
-
 	return (flag);
 }
