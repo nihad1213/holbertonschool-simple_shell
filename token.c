@@ -12,7 +12,7 @@ char **token(char *input)
 	char **backup_tokens = NULL;
 
 	/*allocate memory for the array of tokens */
-	tokens = malloc(buffer* sizeof(char *));
+	tokens = malloc(buffer * sizeof(char *));
 
 	if (tokens == NULL)
 	{
@@ -30,7 +30,7 @@ char **token(char *input)
 		{
 			newBuffer = BUFFER_SIZE * 2;
 			backup_tokens = tokens;
-			tokens = realloc(tokens, newBuffer* sizeof(char *));
+			tokens = realloc(tokens, newBuffer * sizeof(char *));
 
 			if (tokens == NULL)
 			{
@@ -60,7 +60,7 @@ char **tokenPath(char *input)
 	char **backup_tokens = NULL;
 
 	/*allocate memory for the array of tokens */
-	tokens = malloc(buffer* sizeof(char *));
+	tokens = malloc(buffer * sizeof(char *));
 
 	if (tokens == NULL)
 	{
@@ -79,7 +79,7 @@ char **tokenPath(char *input)
 		{
 			newBuffer = BUFFER_SIZE * 2;
 			backup_tokens = tokens;
-			tokens = realloc(tokens, newBuffer* sizeof(char *));
+			tokens = realloc(tokens, newBuffer * sizeof(char *));
 			if (tokens == NULL)
 			{
 				free(backup_tokens);
