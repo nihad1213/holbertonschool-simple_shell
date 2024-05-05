@@ -28,7 +28,7 @@ char *validateInput(char **args, char **argv)
 	{
 		strcpy(holder_env, getenv("PATH"));
 
-		tokens_path = tokenizer_path(holder_env);
+		tokens_path = tokenholder_env);
 		while (tokens_path[i])
 		{
 			first = str_concat(slash_argument, args[0]);
