@@ -32,7 +32,7 @@ char *validateInput(char **arguments, char **argv) /* */
 	else
 	{
 		/* get PATH and copy it to holderEnv buffer*/
-		strcpy(holderEnv, getenv("PATH"));
+		strcpy(holderEnv, _getenv("PATH"));
 
 		tokensPath = tokenPath(holderEnv);
 		while (tokensPath[i])
