@@ -7,7 +7,7 @@
  */
 char *_getenv(const char *name) 
 {
-    extern char **environ; // Declaring environ as an external variable
+    extern char **environ;
     char **env = environ;
 
     size_t namelen = strlen(name);
@@ -16,12 +16,10 @@ char *_getenv(const char *name)
     {
         if (strncmp(*env, name, namelen) == 0 && (*env)[namelen] == '=') 
 	{
-            // Found the environment variable, return its value
             return *env + namelen + 1;
         }
         env++;
     }
 
-    // Environment variable not found
     return NULL;
 }
