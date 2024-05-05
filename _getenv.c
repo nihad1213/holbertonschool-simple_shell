@@ -5,25 +5,23 @@
  *
  * Return: (Success) a positive number
  */
-char *_getenv(char *pathName)
+char *_getenv(const char *name) 
 {
-	char **environCursor, *envPtr, *namePtr;
+    extern char **environ; // Declaring environ as an external variable
+    char **env = environ;
 
-	environCursor = environ;
-	while (*environCursor)
+    size_t namelen = strlen(name);
+
+    while (*env != NULL) 
+    {
+        if (strncmp(*env, name, namelen) == 0 && (*env)[namelen] == '=') 
 	{
-		envPtr = *environCursor;
-		namePtr = pathName;
-		while (*envPtr == *namePtr)
-		{
-			if (*envPtr == '=')
-				break;
-			envPtr++;
-			namePtr++;
-		}
-		if ((*envPtr == '=') && (*namePtr == '\0'))
-			return (envPtr + 1);
-		environCursor++;
-	}
-	return (NULL);
+            // Found the environment variable, return its value
+            return *env + namelen + 1;
+        }
+        env++;
+    }
+
+    // Environment variable not found
+    return NULL;
 }
