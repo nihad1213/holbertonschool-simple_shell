@@ -43,7 +43,6 @@ char *validateInput(char **args, char **argv)
 			}
 			i++;
 		}
-
 		free(tokens_path);
 		fprintf(stderr, "%s: %d: %s: No such file or directory\n",
 			argv[0], __LINE__, args[0]);
