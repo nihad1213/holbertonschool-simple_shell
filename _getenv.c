@@ -1,18 +1,41 @@
 #include "shell.h"
+/**
+  * _getenv - gets the environment value from a key
+  * @name: string to search through environments for
+  * Return: value of the key as a string
+  */
 char *_getenv(const char *name)
 {
-	extern char** environ;
-    	int i = 0;
-    	size_t name_len = strlen(name);
+	int i, j, len;
+	char **env, *tmp;
 
-   	 while (environ[i] != NULL) 
-    	{
-        	if (strncmp(environ[i], name, name_len) == 0 && environ[i][name_len] == '=') 
+	if (!name)
+		return (NULL);
+	env = environ;
+	for (i = 0; env[i]; i++)
+	{
+		for (len = 0; env[i][len] != '='; len++)
+			;
+		len++;
+		tmp = malloc((len) * sizeof(char));
+		_memcpy(tmp, env[i], len - 1);
+		tmp[len - 1] = '\0';
+		if (_strncmp((char *)name, tmp, _strlen(tmp)) == 0)
 		{
-            		return environ[i] + name_len + 1;
-        	}
-        	i++;
-    	}
-
-    	return NULL;
+			free(tmp);
+			tmp = NULL;
+			for (j = 0; env[i][j]; j++)
+			{
+				if (env[i][j] == '=')
+				{
+					tmp = &env[i][j + 1];
+					break;
+				}
+			}
+			return (tmp);
+		}
+		free(tmp);
+		tmp = NULL;
+	}
+	return (NULL);
 }
