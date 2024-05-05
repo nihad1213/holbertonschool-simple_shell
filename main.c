@@ -4,7 +4,7 @@
  *main - Main loop help us to write command and execute it.
  *@argc: number of arguments
  *@argv: list of arguments
- *Return: SUCCESS  
+ *Return: SUCCESS
  */
 int main(int argc, char *argv[])
 {
@@ -24,12 +24,9 @@ int main(int argc, char *argv[])
 		/*Return 1 if the file in the argument refers to the terminal */
 		statusReturn = isatty(STDIN_FILENO);
 		if (statusReturn)
-			/*Write $ in buffer*/
 			write(STDOUT_FILENO, "$ ", 2);
-		/*Get input from user*/
-		getLineReturn = getline(&input, &size, stdin);
-		/*-1 represent error*/
-		if (getLineReturn == -1)
+		getLineReturn = getline(&input, &size, stdin);/*Get input from user*/
+		if (getLineReturn == -1)/*-1 represent error*/
 		{
 			free(input);
 			break;
@@ -40,8 +37,7 @@ int main(int argc, char *argv[])
 			free(input);
 			continue;
 		}
-		/*Divide input into tokens*/
-		args = token(input);
+		args = token(input); /*Divide input into tokens*/
 		if (*args[0] == '\0') /*If we get only spaces, tabs and line breaks */
 			continue;
 		statusReturn = executeBuiltins(args, input, argv, &exitStatus);
