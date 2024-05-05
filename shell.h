@@ -48,5 +48,6 @@ int exitt(char **arguments, char *inputStdin, int *exitStatus);
 char *str_concat(char *s1, char *s2);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *_getenv(const char *name);
+char **copy_env(char **environ_copy, unsigned int environ_length);
 /*FUNCTION PRORTYPES END*/
 #endif
