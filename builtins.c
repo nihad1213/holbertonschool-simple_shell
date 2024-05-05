@@ -73,7 +73,7 @@ int setenvv(char **args, char *inputStdin, int *exitStatus)
 }
 
 /**
- *unsetenv - Deletes an env var from the environment
+ *unsetenvv - Deletes an env var from the environment
  *@args: Tokens
  *@inputStdin: Input
  *@exitStatus: Exit status
