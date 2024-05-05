@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- *validate_input - Validates if the PATH exists
+ *validateInput - Validates if the PATH exists
  *@args: Tokens
  *@argv: List of Arguments
  *Return: new_args
