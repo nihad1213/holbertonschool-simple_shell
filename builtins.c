@@ -44,7 +44,7 @@ int cd(char **args, char *inputStdin, int *exitStatus)
 }
 
 /**
- *setenv - Adds or changes an environment variable
+ *setenvv - Adds or changes an environment variable
  *@args: Tokens
  *@inputStdin: Input
  *@exitStatus: Exit status
