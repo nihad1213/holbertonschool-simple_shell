@@ -1,5 +1,5 @@
 #include "shell.h"
-char *_getenv(const char *name)
+char _getenv(const char *name)
 {
 	int i, j, flag;
 	char *current_env = NULL;
