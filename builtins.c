@@ -19,15 +19,15 @@ int cd(char **arguments, char *inputStdin, int *exitStatus)
 
 	/*HOME*/
 	if (arguments[1] == NULL)
-		status = chdir(getenv("HOME"));
+		status = chdir(_getenv("HOME"));
 	/*User CD with -*/
 	else if (strcmp(arguments[1], "-") == 0)
 		/*Change to previous directory */
-		status = chdir(getenv("OLDPWD"));
+		status = chdir(_getenv("OLDPWD"));
 	/*User cd with ~*/
 	else if (strcmp(arguments[1], "~") == 0)
 		/*Home*/
-		status = chdir(getenv("HOME"));
+		status = chdir(_getenv("HOME"));
 	else /*Specific Path*/
 		status = chdir(arguments[1]);
 
