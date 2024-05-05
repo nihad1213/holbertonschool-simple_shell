@@ -1,20 +1,20 @@
 #include "shell.h"
 
 /**
- * token - Divide input into tokens
- * @input: Input
- * Return: Tokens
+ *token - Divide input into tokens
+ *@input: Input
+ *Return: Tokens
  */
 char **token(char *input)
 {
 	char **tokens = NULL, *token = NULL;
 	int buffer = BUFFER_SIZE, newBuffer = 0, position = 0;
 	char **backup_tokens = NULL;
-	
-    /*allocate memory for the array of tokens */
-	tokens = malloc(buffer * sizeof(char *));
-	
-    if (tokens == NULL)
+
+	/*allocate memory for the array of tokens */
+	tokens = malloc(buffer* sizeof(char*));
+
+	if (tokens == NULL)
 	{
 		fprintf(stderr, "memory allocation error\n");
 		exit(EXIT_FAILURE);
@@ -30,7 +30,7 @@ char **token(char *input)
 		{
 			newBuffer = BUFFER_SIZE * 2;
 			backup_tokens = tokens;
-			tokens = realloc(tokens, newBuffer * sizeof(char *));
+			tokens = realloc(tokens, newBuffer* sizeof(char*));
 
 			if (tokens == NULL)
 			{
@@ -49,9 +49,9 @@ char **token(char *input)
 }
 
 /**
- * tokenPath - Divide Path into tokens
- * @input: Input
- * Return: Tokens
+ *tokenPath - Divide Path into tokens
+ *@input: Input
+ *Return: Tokens
  */
 char **tokenPath(char *input)
 {
@@ -60,9 +60,9 @@ char **tokenPath(char *input)
 	char **backup_tokens = NULL;
 
 	/*allocate memory for the array of tokens */
-	tokens = malloc(buffer * sizeof(char *));
-	
-    if (tokens == NULL)
+	tokens = malloc(buffer* sizeof(char*));
+
+	if (tokens == NULL)
 	{
 		fprintf(stderr, "memory allocation error\n");
 		exit(EXIT_FAILURE);
@@ -79,7 +79,7 @@ char **tokenPath(char *input)
 		{
 			newBuffer = BUFFER_SIZE * 2;
 			backup_tokens = tokens;
-			tokens = realloc(tokens, newBuffer * sizeof(char *));
+			tokens = realloc(tokens, newBuffer* sizeof(char*));
 			if (tokens == NULL)
 			{
 				free(backup_tokens);
@@ -88,6 +88,7 @@ char **tokenPath(char *input)
 				exit(EXIT_FAILURE);
 			}
 		}
+
 		token = strtok(NULL, ":");
 	}
 
