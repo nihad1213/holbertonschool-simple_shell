@@ -46,6 +46,8 @@ char **token(char *input);
 char **tokenPath(char *input);
 char *validateInput(char **args, char **argv);
 int validateSpaces(char *input);
+char *str_concat(char *s1, char *s2);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 /*FUNCTION PROTOTYPES END*/
 
 #endif
